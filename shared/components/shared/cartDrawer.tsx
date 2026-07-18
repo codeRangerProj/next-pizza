@@ -1,0 +1,144 @@
+'use client'
+
+import {FC, PropsWithChildren, useState} from 'react';
+
+import {
+  Button,
+  Sheet,
+  SheetClose,
+  SheetContent,
+  SheetFooter,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from "@/shared/components/ui"
+import Link from "next/link";
+import {ArrowLeft, ArrowRight} from "lucide-react";
+import {CartDrawerItem} from "@/shared/components/shared/cartDrawerItem";
+import {cn, getCartItemDetails} from "@/shared/lib";
+import {PizzaSize, PizzaType} from "@/shared/constants/pizza";
+import Image from "next/image";
+import {Title} from "@/shared/components/shared/title";
+import {useCart} from "@/shared/hooks/useCart";
+import {RemoveAllCartButton} from "@/shared/components/shared/removeAllCartButton";
+import {EmptyCartButton} from "@/shared/components";
+
+export const CartDrawer: FC<PropsWithChildren> = ({children}) => {
+  const {
+    totalAmount,
+    updateItemQuantity,
+    totalQuantity,
+    removeCartItem,
+    removeAllCart,
+    items,
+    loading
+  } = useCart()
+
+  const onClickCountButton = (id: number, quantity: number, type: 'plus' | 'minus') => {
+    const newQuantity = type === 'plus' ? quantity + 1 : quantity - 1
+    void updateItemQuantity(id, newQuantity)
+  };
+
+  const getItemsWord = (count: number) => {
+    const lastTwo = count % 100;
+    const last = count % 10;
+
+    if (lastTwo >= 11 && lastTwo <= 14) {
+      return 'товаров';
+    }
+
+    if (last === 1) {
+      return 'товар';
+    }
+
+    if (last >= 2 && last <= 4) {
+      return 'товара';
+    }
+
+    return 'товаров';
+  }
+
+  return (
+    <Sheet>
+      <SheetTrigger asChild>{children}</SheetTrigger>
+      <SheetContent className='flex flex-col justify-between pb-0 bg-[#F4F1EE]'>
+        <div className={cn('flex flex-col h-full', !totalAmount && 'justify-center')}>
+          {
+            totalAmount > 0 &&
+            <SheetHeader>
+              <SheetTitle>
+                <div className='flex justify-between items-center'>
+              <span
+                className='text-base'
+              >
+                В корзине{" "}
+                <span
+                  className='font-bold'>
+                  {totalQuantity} {getItemsWord(totalQuantity)}
+                </span>
+              </span>
+                  <RemoveAllCartButton removeAllCart={removeAllCart} loading={loading}/>
+                </div>
+
+              </SheetTitle>
+            </SheetHeader>
+          }
+
+          {
+            !totalAmount && (
+              <EmptyCartButton/>
+            )
+          }
+
+          {totalAmount > 0 && <>
+            <div className='-mx-6 mt-5 overflow-auto flex-1'>
+              {
+                items.map((item) => (
+                  <div key={item.id} className='mb-2'>
+                    <CartDrawerItem
+                      id={item.id}
+                      imageUrl={item.imageUrl}
+                      details={getCartItemDetails(
+                        item.ingredients, item.pizzaType as PizzaType, item.pizzaSize as PizzaSize
+                      )}
+                      name={item.name}
+                      price={item.price}
+                      quantity={item.quantity}
+                      loading={item.loading}
+                      onClickCountButton={(type) => onClickCountButton(item.id, item.quantity, type)}
+                      onClickRemove={() => removeCartItem(item.id)}
+                    />
+                  </div>
+                ))
+              }
+            </div>
+
+            <SheetFooter className='-mx-6 bg-white p-8'>
+              <div className='w-full'>
+                <div className='flex mb-4'>
+                  <span className='flex flex-1 text-lg text-neutral-500'>
+                    Итого
+                  <div className='flex-1 border-b border-dashed border-b-neutral-200 relative -top-1 mx-2'/>
+                  </span>
+                  <span className='font-bold text-lg'>{totalAmount} ₽</span>
+                </div>
+
+                <Link href='/checkout'>
+                  <Button
+                    loading={loading}
+                    type='submit'
+                    className='w-full h-12 text-base'
+                  >
+                    Оформить заказ
+                    <ArrowRight className='w-5 ml-2'/>
+                  </Button>
+                </Link>
+
+              </div>
+            </SheetFooter>
+          </>}
+        </div>
+      </SheetContent>
+    </Sheet>
+  );
+};
