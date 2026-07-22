@@ -1,5 +1,5 @@
 import {Nunito} from "next/font/google";
-import React from "react";
+import React, {Suspense} from "react";
 
 import "./globals.css";
 import {Providers} from "@/shared/components";
@@ -22,7 +22,9 @@ export default function RootLayout({
     </head>
     <body className={nunito.variable}>
     <Providers>
-      {children}
+      <Suspense>
+        {children}
+      </Suspense>
     </Providers>
     </body>
     </html>

@@ -60,11 +60,6 @@ export default function CheckoutPage() {
     }
   }, [session]);
 
-  const onClickCountButton = (id: number, quantity: number, type: 'plus' | 'minus') => {
-    const newQuantity = type === 'plus' ? quantity + 1 : quantity - 1
-    void updateItemQuantity(id, newQuantity)
-  };
-
   const onSubmit = async (data: TCheckoutFormValues) => {
     try {
       setSubmitting(true);
@@ -87,6 +82,11 @@ export default function CheckoutPage() {
       });
     }
   }
+
+  const onClickCountButton = (id: number, quantity: number, type: 'plus' | 'minus') => {
+    const newQuantity = type === 'plus' ? quantity + 1 : quantity - 1
+    void updateItemQuantity(id, newQuantity)
+  };
 
   return (
     <Container className='mt-10'>
