@@ -14,7 +14,7 @@ export const useIngredients = () => {
         const response = await Api.ingredients.getAll()
         setIngredients(response)
       } catch (error) {
-        console.log(error);
+        console.error(error);
       } finally {
         setLoading(false)
       }

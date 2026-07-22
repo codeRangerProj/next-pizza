@@ -20,7 +20,7 @@ interface Props {
   loading?: boolean;
   ingredients: Ingredient[];
   items: ProductItem[];
-  onSubmit: (itemId: number, ingredients: number[]) => void;
+  onSubmit?: (itemId: number, ingredients: number[]) => void;
 }
 
 /**
@@ -49,7 +49,7 @@ export const ChoosePizzaForm: FC<Props> = ({className, name, loading, items, onS
 
   const handleClickAdd = () => {
     if (currentItemId) {
-      onSubmit(currentItemId, Array.from(selectedIngredients))
+      onSubmit?.(currentItemId, Array.from(selectedIngredients))
     }
   }
 

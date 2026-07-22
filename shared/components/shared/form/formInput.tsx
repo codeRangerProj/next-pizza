@@ -1,3 +1,5 @@
+'use client'
+
 import {FC, InputHTMLAttributes} from "react";
 import {ClearButton, ErrorText, RequiredSymbol} from "@/shared/components/shared";
 import {Input} from "@/shared/components/ui";

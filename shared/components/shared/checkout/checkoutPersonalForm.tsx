@@ -1,11 +1,9 @@
 import {FC} from 'react';
-import {FormInput, WhiteBlock} from "@/shared/components/shared";
+import {FormInput, FormInputMask, WhiteBlock} from "@/shared/components/shared";
 
 interface Props {
   className?: string;
 }
-
-//TODO react imask 17 15 00
 
 export const CheckoutPersonalForm: FC<Props> = ({className}) => {
   return (
@@ -14,7 +12,7 @@ export const CheckoutPersonalForm: FC<Props> = ({className}) => {
         <FormInput name='firstName' className='text-base' placeholder='Имя'/>
         <FormInput name='lastName' className='text-base' placeholder='Фамилия'/>
         <FormInput name='email' className='text-base' placeholder='E-Mail'/>
-        <FormInput name='phone' className='text-base' placeholder='Телефон'/>
+        <FormInputMask name='phone' className='text-base' placeholder='Телефон'/>
       </div>
     </WhiteBlock>
   );

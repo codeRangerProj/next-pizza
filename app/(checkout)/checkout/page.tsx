@@ -15,7 +15,9 @@ import {useCart} from "@/shared/hooks/useCart";
 import {checkoutFormSchema, TCheckoutFormValues} from "@/shared/constants";
 import {createOrder} from "@/app/actions";
 import toast from "react-hot-toast";
-import {useState} from "react";
+import {useEffect, useState} from "react";
+import {useSession} from "next-auth/react";
+import {Api} from "@/shared/services/api-client";
 
 export default function CheckoutPage() {
   const {
@@ -28,19 +30,35 @@ export default function CheckoutPage() {
   } = useCart()
 
   const [submitting, setSubmitting] = useState(false)
+  const {data: session} = useSession()
 
 
   const form = useForm<TCheckoutFormValues>({
     resolver: zodResolver(checkoutFormSchema),
     defaultValues: {
       email: "",
-      firstName: "",
+      firstName: '',
       lastName: "",
       phone: "",
       address: "",
       comment: "",
     }
   })
+
+  useEffect(() => {
+    async function fetchUserInfo() {
+      const data = await Api.auth.getMe()
+      const [firstName, lastName] = data.fullName.split(" ")
+
+      form.setValue('firstName', firstName)
+      form.setValue('lastName', lastName)
+      form.setValue('email', data.email)
+    }
+
+    if (session) {
+      fetchUserInfo()
+    }
+  }, [session]);
 
   const onClickCountButton = (id: number, quantity: number, type: 'plus' | 'minus') => {
     const newQuantity = type === 'plus' ? quantity + 1 : quantity - 1
@@ -60,8 +78,9 @@ export default function CheckoutPage() {
       if (url) {
         location.href = url;
       }
+
     } catch (err) {
-      console.log(err);
+      console.error(err);
       setSubmitting(false);
       toast.error('Не удалось создать заказ', {
         icon: '❌',
@@ -107,5 +126,5 @@ export default function CheckoutPage() {
   )
 }
 
-///18 22 40
+///21 50 18
 

@@ -1,10 +1,12 @@
-import {FC} from 'react';
+'use client'
+
+import {FC, useEffect, useState} from 'react';
 import {cn} from "@/shared/lib/utils";
 import Image from "next/image";
-import {Button} from "@/shared/components/ui";
-import {User} from "lucide-react";
 import Link from "next/link";
-import {CartButton, SearchInput, Container} from "@/shared/components/shared";
+import {AuthModal, CartButton, Container, ProfileButton, SearchInput} from "@/shared/components/shared";
+import {useSearchParams} from "next/navigation";
+import toast from "react-hot-toast";
 
 interface Props {
   hasSearch?: boolean;
@@ -13,6 +15,26 @@ interface Props {
 }
 
 export const Header: FC<Props> = ({className, hasSearch = true, hasCart = true}) => {
+  const [openAuthModal, setOpenAuthModal] = useState(false)
+  const searchParams = useSearchParams()
+
+  useEffect(() => {
+    let toastMessage = ''
+
+    if (searchParams.has('paid')) {
+      toastMessage = 'Заказ оплачен! Информация отправлена на почту.'
+    }
+
+    if (searchParams.has('verified')) {
+      toastMessage = 'Почта успешно подтверждена'
+    }
+
+    if (toastMessage) {
+      toast.success(toastMessage)
+    }
+
+  }, []);
+
   return (
     <header className={cn('border-b', className)}>
       <Container className='flex items-center justify-between py-8'>
@@ -35,10 +57,8 @@ export const Header: FC<Props> = ({className, hasSearch = true, hasCart = true})
         }
 
         <div className='flex items-center gap-3'>
-          <Button variant='outline' className='flex items-center gap-1'>
-            <User size={16}/>
-            Войти
-          </Button>
+          <AuthModal open={openAuthModal} onClose={() => setOpenAuthModal(false)}/>
+          <ProfileButton onClickSignIn={() => setOpenAuthModal(true)}/>
 
           {hasCart && <CartButton/>}
         </div>
