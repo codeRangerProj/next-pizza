@@ -126,5 +126,3 @@ export default function CheckoutPage() {
   )
 }
 
-///21 50 18
-
