@@ -49,12 +49,12 @@ export const LoginForm: FC<Props> = ({onClose}) => {
     <FormProvider {...form}>
       <form className='flex flex-col gap-5' onSubmit={form.handleSubmit(onSubmit)}>
 
-        <div className='flex justify-between items-center'>
+        <div className='flex items-start justify-between gap-3'>
           <div className='mr-2'>
             <Title text='Вход в аккаунт' size='md' className='font-bold'/>
-            <p className='text-gray-400'>Введите свою почту, чтобы войти в свой аккаунт</p>
+            <p className='text-sm text-gray-400'>Введите свою почту, чтобы войти в свой аккаунт</p>
           </div>
-          <img src="/assets/images/lock.png" alt="lock-icon" width={60} height={60}/>
+          <img className='h-12 w-12 shrink-0 sm:h-[60px] sm:w-[60px]' src="/assets/images/lock.png" alt="lock-icon" width={60} height={60}/>
         </div>
 
         <FormInput name='email' label='E-Mail' required/>

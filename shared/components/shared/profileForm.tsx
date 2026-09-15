@@ -52,11 +52,11 @@ export const ProfileForm: FC<Props> = ({data}) => {
 
 
   return (
-    <Container className="my-10">
-      <Title text={`Личные данные | #${data.id}`} size="md" className="font-bold"/>
+    <Container className="my-6 sm:my-10">
+      <Title text={`Личные данные | #${data.id}`} size="md" className="text-2xl font-bold sm:text-[26px]"/>
 
       <FormProvider {...form}>
-        <form className="flex flex-col gap-5 w-96 mt-10" onSubmit={form.handleSubmit(onSubmit)}>
+        <form className="mt-6 flex w-full max-w-md flex-col gap-5 sm:mt-10" onSubmit={form.handleSubmit(onSubmit)}>
           <FormInput name="email" label="E-Mail" required/>
           <FormInput name="fullName" label="Полное имя" required/>
 

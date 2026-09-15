@@ -36,17 +36,17 @@ export const Stories: React.FC<Props> = ({className}) => {
 
   return (
     <>
-      <Container className={cn('flex items-center justify-between gap-2 my-10', className)}>
+      <Container className={cn('my-6 flex gap-2 overflow-x-auto pb-1 sm:my-10 lg:items-center lg:justify-between lg:overflow-hidden', className)}>
         {stories.length === 0 &&
           [...Array(6)].map((_, index) => (
-            <div key={index} className="w-[200px] h-[250px] bg-gray-200 rounded-md animate-pulse"/>
+            <div key={index} className="h-[180px] w-[140px] shrink-0 animate-pulse rounded-md bg-gray-200 sm:h-[250px] sm:w-full sm:max-w-[200px]"/>
           ))}
 
         {stories.map((story) => (
           <img
             key={story.id}
             onClick={() => onClickStory(story)}
-            className="rounded-md cursor-pointer"
+            className="h-[180px] w-[140px] shrink-0 cursor-pointer rounded-md object-cover sm:h-[250px] sm:w-full sm:max-w-[200px] lg:flex-1"
             height={250}
             width={200}
             src={story.previewImageUrl}
@@ -54,9 +54,9 @@ export const Stories: React.FC<Props> = ({className}) => {
         ))}
 
         {open && (
-          <div className="absolute left-0 top-0 w-full h-full bg-black/80 flex items-center justify-center z-30">
-            <div className="relative" style={{width: 520}}>
-              <button className="absolute -right-10 -top-5 z-30" onClick={() => setOpen(false)}>
+          <div className="fixed inset-0 z-30 flex h-full w-full items-center justify-center bg-black/80 px-4">
+            <div className="relative max-h-[90vh] w-full max-w-[520px] overflow-hidden">
+              <button className="absolute -right-1 -top-1 z-30 sm:-right-10 sm:-top-5" onClick={() => setOpen(false)}>
                 <X className="absolute top-0 right-0 w-8 h-8 text-white/50"/>
               </button>
 

@@ -32,11 +32,11 @@ export const TopBar: FC<Props> = ({className, categories}) => {
   }, []);
 
   return (
-    <div className={cn('sticky top-0 bg-white py-5 shadow-lg shadow-black/5 z-10', className)}>
-      <Container className='flex items-center justify-between'>
+    <div className={cn('sticky top-0 z-10 bg-white py-3 shadow-lg shadow-black/5 sm:py-5', className)}>
+      <Container className='flex min-w-0 items-center justify-between gap-3'>
         <Categories items={categories}/>
 
-        <div className='flex items-center gap-5'>
+        <div className='flex shrink-0 items-center gap-2 sm:gap-5'>
           <motion.div layout>
             <SortPopup/>
           </motion.div>

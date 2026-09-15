@@ -24,7 +24,7 @@ export const AuthModal: FC<Props> = ({open, onClose}) => {
 
   return (
     <Dialog open={open} onOpenChange={handleClose}>
-      <DialogContent className='w-[450px] bg-white p-10'>
+      <DialogContent className='w-[calc(100%_-_2rem)] max-w-[450px] bg-white p-5 sm:p-10'>
 
         {
           type === 'login'
@@ -33,7 +33,7 @@ export const AuthModal: FC<Props> = ({open, onClose}) => {
         }
 
         <hr/>
-        <div className='flex gap-2'>
+        <div className='flex flex-col gap-2 sm:flex-row'>
 
           <Button
             variant='secondary'

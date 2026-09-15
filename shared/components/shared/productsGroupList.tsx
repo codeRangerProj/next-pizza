@@ -31,9 +31,9 @@ export const ProductsGroupList: FC<Props> = ({title, listClassName, items, categ
 
   return (
     <div className={cn(className, 'scroll-mt-[100px]')} id={title} ref={intersectionRef}>
-      <Title text={title} className='font-extrabold mb-5' size='lg'/>
+      <Title text={title} className='mb-4 text-[26px] font-extrabold sm:mb-5 sm:text-[32px]' size='lg'/>
 
-      <div className={cn('grid grid-cols-3 gap-[50px]', listClassName)}>
+      <div className={cn('grid grid-cols-2 gap-x-3 gap-y-8 sm:gap-x-6 sm:gap-y-10 lg:grid-cols-3 lg:gap-[50px]', listClassName)}>
         {items.map((item, i) => (
           <ProductCard
             key={item.id}

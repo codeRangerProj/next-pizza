@@ -37,13 +37,13 @@ export const Header: FC<Props> = ({className, hasSearch = true, hasCart = true})
 
   return (
     <header className={cn('border-b', className)}>
-      <Container className='flex items-center justify-between py-8'>
+      <Container className='flex flex-wrap items-center justify-between gap-y-4 py-4 sm:flex-nowrap sm:gap-y-0 sm:py-6 lg:py-8'>
 
-        <Link href='/'>
-          <div className='flex items-center gap-4'>
-            <Image src='/logo.png' alt='Logo' width={35} height={35}/>
+        <Link href='/' className='shrink-0'>
+          <div className='flex items-center gap-2 sm:gap-4'>
+            <Image src='/logo.png' alt='Logo' width={35} height={35} className='h-8 w-8 sm:h-[35px] sm:w-[35px]'/>
             <div>
-              <h1 className='text-2xl uppercase font-black'>Next Pizza</h1>
+              <h1 className='text-xl uppercase font-black sm:text-2xl'>Next Pizza</h1>
               <p className='text-sm text-gray-400 leading-3'>Вкусней уже некуда</p>
             </div>
           </div>
@@ -51,12 +51,12 @@ export const Header: FC<Props> = ({className, hasSearch = true, hasCart = true})
 
         {
           hasSearch &&
-          <div className='mx-10 flex-1'>
+          <div className='order-3 w-full sm:order-none sm:mx-4 sm:flex-1 lg:mx-10'>
             <SearchInput/>
           </div>
         }
 
-        <div className='flex items-center gap-3'>
+        <div className='flex items-center gap-2 sm:gap-3'>
           <AuthModal open={openAuthModal} onClose={() => setOpenAuthModal(false)}/>
           <ProfileButton onClickSignIn={() => setOpenAuthModal(true)}/>
 

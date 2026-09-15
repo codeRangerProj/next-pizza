@@ -36,7 +36,7 @@ export const CheckoutCart: FC<Props> = ({
       className={className}
       endAdornment={<RemoveAllCartButton removeAllCart={removeAllCart} loading={loading}/>}
     >
-      <div className='flex flex-col gap-5'>
+      <div className='flex flex-col gap-4 sm:gap-5'>
         {!totalAmount && !loading && <EmptyCartButton isCheckout={true}/>}
         {loading && items.length < 1 && [...Array(3)].map((_, index) => <SkeletonCheckoutCart key={index}/>)}
 

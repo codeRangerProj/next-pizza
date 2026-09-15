@@ -15,13 +15,13 @@ export const IngredientItem: FC<Props> = ({className, imageUrl, name, price, act
   return (
     <div
       className={cn(
-        'flex items-center flex-col p-3 rounded-md w-32 text-center relative cursor-pointer shadow-md bg-white',
+        'relative flex w-full cursor-pointer flex-col items-center rounded-md bg-white p-2 text-center shadow-md sm:w-32 sm:p-3',
         {'border border-primary': active},
         className
       )}
       onClick={onClick}>
       {active && <CircleCheck className='absolute top-2 right-2 text-primary'/>}
-      <img src={imageUrl} alt={name} width={110} height={110}/>
+      <img className='h-[84px] w-[84px] object-contain sm:h-[110px] sm:w-[110px]' src={imageUrl} alt={name} width={110} height={110}/>
       <span className='text-xs mb-3'>{name}</span>
       <span className='font-bold absolute bottom-0'>{price} ₽</span>
     </div>

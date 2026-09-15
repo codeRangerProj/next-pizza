@@ -88,7 +88,7 @@ export const CheckboxFiltersGroup: FC<Props> = (
       </div>
 
       {items.length > limit && (
-        <div className={showAll ? 'border-t border-t-neutral-100 mt-4' : ''}>
+        <div>
           <button
             className='text-primary mt-3'
             onClick={() => setShowAll(!showAll)}

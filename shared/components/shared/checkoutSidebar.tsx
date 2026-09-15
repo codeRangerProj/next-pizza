@@ -15,13 +15,13 @@ export const CheckoutSidebar: FC<Props> = ({className, totalAmount, loading}) =>
   const totalPrice = totalAmount + NDS + deliveryPrice
 
   return (
-    <WhiteBlock className={cn('p-6 sticky top-4', className)}>
+    <WhiteBlock className={cn('sticky top-4 p-4 sm:p-6', className)}>
       <div className='flex flex-col gap-1'>
         <span className='text-xl'>Итого:</span>
         {
           loading
             ? <Skeleton className='h-[51px] w-44'/>
-            : <span className='text-[34px] font-extrabold'>{totalPrice} ₽</span>
+            : <span className='text-[30px] font-extrabold sm:text-[34px]'>{totalPrice} ₽</span>
         }
       </div>
 

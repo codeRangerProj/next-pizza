@@ -61,7 +61,7 @@ export const CartDrawer: FC<PropsWithChildren> = ({children}) => {
   return (
     <Sheet>
       <SheetTrigger asChild>{children}</SheetTrigger>
-      <SheetContent className='flex flex-col justify-between pb-0 bg-[#F4F1EE]'>
+      <SheetContent className='flex w-full flex-col justify-between bg-[#F4F1EE] pb-0 sm:max-w-lg'>
         <div className={cn('flex flex-col h-full', !totalAmount && 'justify-center')}>
           {
             totalAmount > 0 &&
@@ -91,7 +91,7 @@ export const CartDrawer: FC<PropsWithChildren> = ({children}) => {
           }
 
           {totalAmount > 0 && <>
-            <div className='-mx-6 mt-5 overflow-auto flex-1'>
+            <div className='-mx-4 mt-5 flex-1 overflow-auto sm:-mx-6'>
               {
                 items.map((item) => (
                   <div key={item.id} className='mb-2'>
@@ -113,7 +113,7 @@ export const CartDrawer: FC<PropsWithChildren> = ({children}) => {
               }
             </div>
 
-            <SheetFooter className='-mx-6 bg-white p-8'>
+            <SheetFooter className='-mx-4 bg-white p-5 sm:-mx-6 sm:p-8'>
               <div className='w-full'>
                 <div className='flex mb-4'>
                   <span className='flex flex-1 text-lg text-neutral-500'>

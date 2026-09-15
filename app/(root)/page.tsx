@@ -8,23 +8,23 @@ export default async function Home({searchParams}: { searchParams: GetSearchPara
 
   return (
     <>
-      <Container className='mt-10'>
-        <Title text='Все пиццы' size='lg' className='font-extrabold'/>
+      <Container className='mt-6 sm:mt-10'>
+        <Title text='Все пиццы' size='lg' className='text-[28px] font-extrabold sm:text-[32px]'/>
       </Container>
 
       <TopBar categories={categories.filter((category) => category.products.length > 0)}/>
 
       <Stories/>
 
-      <Container className='mt-10 pb-14'>
-        <div className='flex gap-[80px]'>
-          <div className='w-[250px]'>
+      <Container className='mt-6 pb-10 sm:mt-10 sm:pb-14'>
+        <div className='flex flex-col gap-8 lg:flex-row lg:gap-[80px]'>
+          <div className='w-full lg:w-[250px] lg:shrink-0'>
             <Suspense>
               <Filters/>
             </Suspense>
           </div>
 
-          <div className='flex-1'>
+          <div className='min-w-0 flex-1'>
             <div className='flex flex-col gap-16'>
               {
                 categories.map((category) => (
@@ -45,4 +45,3 @@ export default async function Home({searchParams}: { searchParams: GetSearchPara
     </>
   );
 }
-

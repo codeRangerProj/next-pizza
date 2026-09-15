@@ -16,12 +16,12 @@ export const ProfileButton: FC<Props> = ({className, onClickSignIn}) => {
     <div className={className}>
       {
         !session
-          ? <Button onClick={onClickSignIn} variant='outline' className='flex items-center gap-1'>
+          ? <Button onClick={onClickSignIn} variant='outline' className='flex items-center gap-1 px-2 text-xs sm:px-4 sm:text-sm'>
             <User size={16}/>
             Войти
           </Button>
           : <Link href='/profile'>
-            <Button variant='secondary' className='flex items-center gap-2'>
+            <Button variant='secondary' className='flex items-center gap-2 px-2 text-xs sm:px-4 sm:text-sm'>
               <CircleUser size={18}/>
               Профиль
             </Button>

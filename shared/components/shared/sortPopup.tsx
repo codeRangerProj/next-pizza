@@ -9,9 +9,9 @@ interface Props {
 export const SortPopup: FC<Props> = ({className}) => {
   return (
     <div
-      className={cn('inline-flex items-center gap-1 bg-gray-50 px-5 h-[52px] rounded-2xl cursor-pointer', className)}>
-      <ArrowUpDown size={16}/>
-      <b>Сортировка:</b>
+      className={cn('inline-flex h-10 items-center gap-1 rounded-2xl bg-gray-50 px-2 text-xs sm:h-[52px] sm:px-5 sm:text-base', className)}>
+      <ArrowUpDown size={14} className='sm:h-4 sm:w-4'/>
+      <b className='hidden sm:inline'>Сортировка:</b>
       <b className='text-primary'>популярное</b>
     </div>
   );

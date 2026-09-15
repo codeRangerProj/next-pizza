@@ -89,15 +89,15 @@ export default function CheckoutPage() {
   };
 
   return (
-    <Container className='mt-10'>
-      <Title text='Оформление заказа' className='font-extrabold mb-8 text-[36px]'/>
+    <Container className='mt-6 sm:mt-10'>
+      <Title text='Оформление заказа' className='mb-6 text-[28px] font-extrabold sm:mb-8 sm:text-[36px]'/>
 
       <FormProvider {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)}>
-          <div className='flex gap-10'>
+          <div className='flex flex-col gap-6 lg:flex-row lg:gap-10'>
 
             {/* Левая часть*/}
-            <div className='flex flex-col gap-10 flex-1 mb-20'>
+            <div className='mb-12 flex min-w-0 flex-1 flex-col gap-6 sm:gap-10 lg:mb-20'>
               <CheckoutCart
                 items={items}
                 removeCartItem={removeCartItem}
@@ -113,7 +113,7 @@ export default function CheckoutPage() {
             </div>
 
             {/* Правая часть*/}
-            <div className='w-[450px]'>
+            <div className='w-full lg:w-[450px] lg:shrink-0'>
               <CheckoutSidebar
                 totalAmount={totalAmount}
                 loading={loading || submitting}

@@ -11,7 +11,7 @@ export const CartItemInfo: FC<Props> = ({name, details, className}) => {
   return (
     <div>
       <div className={cn('flex items-center justify-between', className)}>
-        <h2 className="text-lg font-bold flex-1 leading-6">{name}</h2>
+        <h2 className="flex-1 text-base font-bold leading-6 sm:text-lg">{name}</h2>
       </div>
       {details && <p className="text-xs text-gray-400 w-full">{details}</p>}
     </div>
