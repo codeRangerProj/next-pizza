@@ -36,7 +36,7 @@ export const ProductCard: FC<Props> = ({id, name, price, ingredients, imageUrl, 
           className='mt-3 font-bold h-[66px]'
         />
 
-        <p className='text-sm text-gray-400'>
+        <p className='text-sm text-gray-400 line-clamp-2'>
           {
             ingredients.map((ingredient) => (
               ingredient.name
