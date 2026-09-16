@@ -1,8 +1,10 @@
 import {Nunito} from "next/font/google";
 import React, {Suspense} from "react";
 
-import "./globals.css";
+import './globals.css';
+
 import {Providers} from "@/shared/components";
+
 
 const nunito = Nunito({
   subsets: ['cyrillic'],

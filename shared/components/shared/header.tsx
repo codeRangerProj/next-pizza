@@ -39,7 +39,8 @@ export const Header: FC<Props> = ({className, hasSearch = true, hasCart = true})
     <header className={cn('border-b', className)}>
       <Container className='flex flex-wrap items-center justify-between gap-y-4 py-4 sm:flex-nowrap sm:gap-y-0 sm:py-6 lg:py-8'>
 
-        <Link href='/' className='shrink-0'>
+        <div className='flex w-full min-w-0 items-center justify-between sm:contents'>
+        <Link href='/' className='min-w-0 shrink sm:order-1'>
           <div className='flex items-center gap-2 sm:gap-4'>
             <Image src='/logo.png' alt='Logo' width={35} height={35} className='h-8 w-8 sm:h-[35px] sm:w-[35px]'/>
             <div>
@@ -49,19 +50,20 @@ export const Header: FC<Props> = ({className, hasSearch = true, hasCart = true})
           </div>
         </Link>
 
-        {
-          hasSearch &&
-          <div className='order-3 w-full sm:order-none sm:mx-4 sm:flex-1 lg:mx-10'>
-            <SearchInput/>
-          </div>
-        }
-
-        <div className='flex items-center gap-2 sm:gap-3'>
+        <div className='flex items-center gap-2 sm:order-3 sm:gap-3'>
           <AuthModal open={openAuthModal} onClose={() => setOpenAuthModal(false)}/>
           <ProfileButton onClickSignIn={() => setOpenAuthModal(true)}/>
 
           {hasCart && <CartButton/>}
         </div>
+        </div>
+
+        {
+          hasSearch &&
+          <div className='order-3 w-full sm:order-2 sm:mx-4 sm:flex-1 lg:mx-10'>
+            <SearchInput/>
+          </div>
+        }
 
       </Container>
     </header>

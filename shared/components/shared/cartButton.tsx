@@ -18,7 +18,7 @@ export const CartButton: FC<Props> = ({className}) => {
 
   return (
     <CartDrawer>
-      <Button loading={loading} className={cn('group relative px-2 text-xs sm:px-4 sm:text-sm', {'w-[132px]': loading}, className)}>
+      <Button loading={loading} className={cn('group relative px-2 text-xs sm:px-4 sm:text-sm', {'w-[91.47px]': loading}, className)}>
         <b>{totalAmount} ₽</b>
         <span className='mx-1 h-full w-[1px] bg-white/30 sm:mx-3'/>
         <div className='flex items-center gap-1 transition duration-300 group-hover:opacity-0'>

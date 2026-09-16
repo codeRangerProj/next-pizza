@@ -3,7 +3,6 @@
 import {FC, useEffect, useState} from 'react';
 import {cn} from "@/shared/lib/utils";
 import {Categories} from "./categories";
-import {SortPopup} from "./sortPopup";
 import {Container} from "./container";
 import {Category} from "@prisma/client";
 import {CartButton} from "@/shared/components/shared/cartButton";
@@ -37,10 +36,6 @@ export const TopBar: FC<Props> = ({className, categories}) => {
         <Categories items={categories}/>
 
         <div className='flex shrink-0 items-center gap-2 sm:gap-5'>
-          <motion.div layout>
-            <SortPopup/>
-          </motion.div>
-
           <AnimatePresence>
             {isSticky && (
               <motion.div
@@ -56,7 +51,6 @@ export const TopBar: FC<Props> = ({className, categories}) => {
         </div>
 
       </Container>
-
     </div>
   );
 };

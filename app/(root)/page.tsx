@@ -8,10 +8,6 @@ export default async function Home({searchParams}: { searchParams: GetSearchPara
 
   return (
     <>
-      <Container className='mt-6 sm:mt-10'>
-        <Title text='Все пиццы' size='lg' className='text-[28px] font-extrabold sm:text-[32px]'/>
-      </Container>
-
       <TopBar categories={categories.filter((category) => category.products.length > 0)}/>
 
       <Stories/>
