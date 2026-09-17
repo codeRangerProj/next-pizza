@@ -3,7 +3,7 @@ import {prisma} from "@/prisma/prisma-client";
 
 export async function GET(req: NextRequest) {
   try {
-    const code = ''
+    const code = req.nextUrl.searchParams.get('code')
 
     if (!code) {
       return NextResponse.json({error: 'Неверный код'}, {status: 400});
@@ -38,5 +38,6 @@ export async function GET(req: NextRequest) {
 
   } catch (error) {
     console.error('Error [VERIFY_GET]', error)
+    return NextResponse.json({error: 'Не удалось подтвердить почту'}, {status: 500})
   }
 }

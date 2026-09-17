@@ -33,13 +33,14 @@ export const RegisterForm: React.FC<Props> = ({onClose, onClickLogin}) => {
         password: data.password,
       });
 
-      toast.error('Регистрация прошла успешно 📝. Подтвердите свою почту', {
+      toast.success('Регистрация прошла успешно 📝. Подтвердите свою почту', {
         icon: '✅',
       });
 
       onClose?.();
     } catch (error) {
-      return toast.error('Неверный E-Mail или пароль', {
+      console.error('Error [REGISTER]', error)
+      return toast.error('Не удалось зарегистрироваться. Проверьте данные и настройки почты', {
         icon: '❌',
       });
     }
