@@ -27,14 +27,15 @@ export const ChooseProductModal: FC<Props> = ({className, product}) => {
     >
       <DialogContent
         className={cn(
-          'w-[calc(100%_-_2rem)] max-w-[1060px] overflow-hidden bg-white p-0 sm:min-h-[550px]',
+          'w-[calc(100%_-_2rem)] max-h-[calc(100dvh_-_1rem)] max-w-[1060px] overflow-hidden bg-white p-0 sm:min-h-[550px]',
           className
         )}>
-        <ProductForm product={product} onSubmit={() => router.back()}/>
-        {/*<VisuallyHidden><DialogTitle></DialogTitle></VisuallyHidden>*/}
-        {/*{*/}
-        {/*  <ProductForm product={product}/>*/}
-        {/*}*/}
+        <div className="max-h-[calc(100dvh_-_1rem)] overflow-y-auto">
+          <ProductForm product={product} onSubmit={() => router.back()}/>
+        </div>
+        <VisuallyHidden>
+          <DialogTitle>Настройка продукта</DialogTitle>
+        </VisuallyHidden>
       </DialogContent>
     </Dialog>
   );
