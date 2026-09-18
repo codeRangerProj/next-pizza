@@ -1,17 +1,43 @@
-import {Resend} from "resend";
-import {ReactNode} from "react";
+import { render } from '@react-email/render';
+import { ReactNode } from 'react';
 
-export const sendEmail = async (to: string, subject: string, template: ReactNode) => {
-  const resend = new Resend(process.env.RESEND_API_KEY);
+export const sendEmail = async (
+  to: string,
+  subject: string,
+  template: ReactNode,
+) => {
+  const html = await render(template);
 
-  const {data, error} = await resend.emails.send({
-    from: 'onboarding@resend.dev',
-    to,
-    subject,
-    react: template,
-  });
+  const response = await fetch(
+    'https://api.elasticemail.com/v4/emails/transactional',
+    {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'X-ElasticEmail-ApiKey': process.env.ELASTIC_EMAIL_API_KEY!,
+      },
+      body: JSON.stringify({
+        Recipients: {
+          To: [to],
+        },
+        Content: {
+          Body: [
+            {
+              ContentType: 'HTML',
+              Content: html,
+            },
+          ],
+          From: process.env.ELASTIC_EMAIL_FROM!,
+          Subject: subject,
+        },
+      }),
+    },
+  );
 
-  if (error) throw error;
+  if (!response.ok) {
+    const error = await response.text();
+    throw new Error(`Elastic Email error: ${error}`);
+  }
 
-  return data
-}
+  return await response.json();
+};
