@@ -7,7 +7,7 @@ import {OrderStatus, Prisma} from "@prisma/client";
 import {createPayment, sendEmail} from "@/shared/lib";
 import {PayOrderTemplate, VerificationUserTemplate} from "@/shared/components";
 import {getUserSession} from "@/shared/lib/getUserSession";
-import {hashSync} from "bcrypt";
+import {hashSync} from "bcryptjs";
 
 export async function createOrder(data: TCheckoutFormValues) {
   try {

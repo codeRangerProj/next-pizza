@@ -4,7 +4,7 @@ import {UserRole} from "@prisma/client";
 import GitHubProvider from "next-auth/providers/github";
 import GoogleProvider from "next-auth/providers/google";
 import CredentialsProvider from "next-auth/providers/credentials";
-import {compare, hashSync} from "bcrypt";
+import {compare, hashSync} from "bcryptjs";
 
 export const authOptions: AuthOptions = {
   providers: [
