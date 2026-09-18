@@ -1,4 +1,13 @@
 import {InfoBlock} from "@/shared/components";
+import type {Metadata} from "next";
+
+export const metadata: Metadata = {
+  title: 'Доступ запрещен',
+  robots: {
+    index: false,
+    follow: false,
+  },
+}
 
 export default function UnauthorizedPage() {
   return (
